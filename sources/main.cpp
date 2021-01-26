@@ -33,7 +33,7 @@ int main () {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             if (soldier.get_onGround()) {
-                soldier.set_speedY(-0.4);
+                soldier.set_speedY(-0.4f);
                 soldier.set_onGround(false);
             }
         }

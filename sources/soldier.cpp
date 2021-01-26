@@ -1,5 +1,7 @@
 #include <soldier.hpp>
 
+const int ground = 800;
+
 Soldier::Soldier(sf::RenderWindow* _window, const sf::Texture& image) :
         window(_window),rect(sf::FloatRect(0, 0, 40, 50)),
         speedX(0), speedY(0),
@@ -7,9 +9,10 @@ Soldier::Soldier(sf::RenderWindow* _window, const sf::Texture& image) :
         health(200), score(0) {
     sprite.setTexture(image);
     sprite.setTextureRect(sf::IntRect(0, 244, 40, 40));
+    sprite.setScale(2, 2);
 }
 
-void Soldier::update(const float time) {
+void Soldier::update(float time) {
     rect.left += speedX * time;
 
     if(!onGround)
@@ -19,8 +22,8 @@ void Soldier::update(const float time) {
 
     onGround = false;
 
-    if (rect.top > 150) {
-        rect.top = 150;
+    if (rect.top > ground) {
+        rect.top = ground;
         speedY = 0;
         onGround = true;
     }
@@ -40,7 +43,7 @@ void Soldier::set_speedX(float sX) {
 }
 
 void Soldier::set_speedY(float sY) {
-    speedX = sY;
+    speedY = sY;
 }
 
 void Soldier::set_onGround(bool value) {
