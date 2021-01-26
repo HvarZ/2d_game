@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-class boss {
+class Boss {
 private:
     sf::RenderWindow* window;
     std::string name;

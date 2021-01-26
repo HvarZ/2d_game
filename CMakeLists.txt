@@ -5,11 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
         sources/main.cpp
+        sources/soldier.cpp
         )
 
 set(HEADERS
         include/boss.hpp
-        include/hero.hpp
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
