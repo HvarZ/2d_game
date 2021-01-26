@@ -23,8 +23,12 @@ public:
     void update(float time);
     void draw();
 
-    virtual void set_speedX(const float sX);
-    virtual void set_speedY(const float sY);
+    void set_speedX(float sX);
+    void set_speedY(float sY);
+    void set_onGround(bool value);
+
+    [[nodiscard]] auto get_onGround() const noexcept -> bool;
+
 };
 
 #endif //INC_2D_GAME_SOLDIER_HPP

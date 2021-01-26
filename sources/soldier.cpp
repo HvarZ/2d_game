@@ -35,14 +35,22 @@ void Soldier::update(const float time) {
     speedX = 0;
 }
 
-void Soldier::set_speedX(const float sX) {
+void Soldier::set_speedX(float sX) {
     speedX = sX;
 }
 
-void Soldier::set_speedY(const float sY) {
+void Soldier::set_speedY(float sY) {
     speedX = sY;
+}
+
+void Soldier::set_onGround(bool value) {
+    onGround = value;
 }
 
 void Soldier::draw() {
     window->draw(sprite);
+}
+
+auto Soldier::get_onGround() const noexcept -> bool {
+    return onGround;
 }

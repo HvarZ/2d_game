@@ -26,9 +26,16 @@ int main () {
             soldier.set_speedX(-0.1);
         }
 
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             soldier.set_speedX(0.1);
 
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            if (soldier.get_onGround()) {
+                soldier.set_speedY(-0.4);
+                soldier.set_onGround(false);
+            }
         }
 
         soldier.update(time);
