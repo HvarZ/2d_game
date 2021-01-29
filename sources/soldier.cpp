@@ -21,15 +21,12 @@ void Soldier::draw() const noexcept {
     window_->draw(sprite_);
 }
 
-
 void Soldier::move(const float speedJump, const float speedRun, const float time) noexcept {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         speedX_ = -speedRun;
 
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         speedX_ = speedRun;
-
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         if (isOnGround_) {
@@ -37,27 +34,21 @@ void Soldier::move(const float speedJump, const float speedRun, const float time
             isOnGround_ = false;
         }
 
-
     rect_.left += speedX_ * time;
 
     if (currentFrame_ += (getStandardFpsRun() * time), currentFrame_ > static_cast<float>(getNumberFramesRun()))
         currentFrame_ -= static_cast<float>(getNumberFramesRun());
 
     if (speedX_ > 0)
-        sprite_.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame_),
-                               244,
-                               40,
-                               50));
+        sprite_.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame_), 244,
+                               40, 50));
     if (speedX_ < 0)
-        sprite_.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame_) + 40,
-                               244,
-                               -40,
-                               50));
+        sprite_.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame_) + 40, 244,
+                               -40, 50));
 
     sprite_.setPosition(rect_.left, rect_.top);
 
     speedX_ = 0;
-
 }
 
 void Soldier::jump(float time) noexcept {
@@ -79,9 +70,7 @@ void Soldier::stand(float time) noexcept {
                     && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         if (currentFrame_ += (getStandardFpsStand() * time), currentFrame_ > static_cast<float>(getNumberFramesStand()))
             currentFrame_ -= static_cast<float>(getNumberFramesStand());
-        sprite_.setTextureRect(sf::IntRect(44 * static_cast<int>(currentFrame_),
-                               190,
-                               40,
-                               50));
+        sprite_.setTextureRect(sf::IntRect(44 * static_cast<int>(currentFrame_), 190,
+                               40, 50));
     }
 }
