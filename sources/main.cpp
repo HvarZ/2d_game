@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+
 #include <soldier.hpp>
 
 int main() {

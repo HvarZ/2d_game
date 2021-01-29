@@ -2,21 +2,22 @@
 #define INC_2D_GAME_BOSS_HPP
 
 #include <string>
+
 #include <SFML/Graphics.hpp>
 
 class Boss {
 private:
-    sf::RenderWindow* window;
-    std::string name;
-    sf::Texture texture;
-    sf::Sprite sprite;
+    sf::RenderWindow* window_;
+    std::string name_;
+    sf::Texture texture_;
+    sf::Sprite sprite_;
 
-    float startPosition;
-    float currentFrame;
+    float startPosition_;
+    float currentFrame_;
 
-    int health;
+    int health_;
 
-    bool onGround;
+    bool onGround_;
 
 public:
     virtual void move();

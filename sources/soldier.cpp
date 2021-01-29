@@ -1,89 +1,126 @@
 #include <soldier.hpp>
 
-const int ground = 800;
+auto getCoefficientScale() -> float {
+    return 2;
+}
 
-Soldier::Soldier(sf::RenderWindow* _window, const sf::Texture& image) :
-        window(_window),rect(sf::FloatRect(0, 0, 40, 50)),
-        speedX(0), speedY(0),
-        currentFrame(0), onGround(true),
-        health(200), score(0) {
-    sprite.setTexture(image);
-    sprite.setTextureRect(sf::IntRect(0, 244, 40, 40));
-    sprite.setScale(2, 2);
+auto getPositionGround() -> float {
+    return 800;
+}
+
+auto getStandardSpeedJump() -> float {
+    return -0.4f;
+}
+
+auto getStandardSpeedRun() -> float {
+    return 0.1f;
+}
+
+auto getStandardHealthSoldier() -> int {
+    return 200;
+}
+
+auto getStandardFpsRun() -> float {
+    return 0.005f;
+}
+
+auto getStandardFpsJump() -> float {
+    return 0.0005f;
+}
+
+auto getStandardFpsStand() -> float {
+    return 0.000001f;
+}
+
+auto getNumberFramesRun() -> int {
+    return 6;
+}
+
+auto getNumberFramesStand() -> int {
+    return 3;
+}
+
+Soldier::Soldier(sf::RenderWindow* window, const sf::Texture& image) :
+        window_(window), rect_(sf::FloatRect(0, 0, 40, 50)),
+        speedX_(0), speedY_(0),
+        currentFrame_(0), isOnGround_(true),
+        health_(getStandardHealthSoldier()), score_(0) {
+    sprite_.setTexture(image);
+    sprite_.setTextureRect(sf::IntRect(0, 244, 40, 40));
+    sprite_.setScale(getCoefficientScale(), getCoefficientScale());
 }
 
 void Soldier::update(float time) {              // every tick
     stand(time);
-    move(-0.4f, 0.1f, time);
+    move(getStandardSpeedJump(), getStandardSpeedRun(), time);
     jump(time);
 }
 
-void Soldier::set_speedX(float sX) {
-    speedX = sX;
-}
-
-void Soldier::set_speedY(float sY) {
-    speedY = sY;
-}
-
-void Soldier::set_onGround(bool value) {
-    onGround = value;
-}
-
 void Soldier::draw() const noexcept {
-    window->draw(sprite);
+    window_->draw(sprite_);
 }
 
-[[nodiscard]] auto Soldier::get_onGround() const noexcept -> bool {
-    return onGround;
-}
 
 void Soldier::move(const float speedJump, const float speedRun, const float time) noexcept {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        set_speedX(-speedRun);
-    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        speedX_ = -speedRun;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        set_speedX(speedRun);
-    }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        if (get_onGround()) {
-            set_speedY(speedJump);
-            set_onGround(false);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        speedX_ = speedRun;
+
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if (isOnGround_) {
+            speedY_ = speedJump;
+            isOnGround_ = false;
         }
-    }
 
-    rect.left += speedX * time;
 
-    if (currentFrame += (0.005f * time), currentFrame > 6) currentFrame -= 6;
+    rect_.left += speedX_ * time;
 
-    if (speedX > 0) sprite.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame), 244, 40, 50));
-    if (speedX < 0) sprite.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame) + 40, 244, -40, 50));
+    if (currentFrame_ += (getStandardFpsRun() * time), currentFrame_ > static_cast<float>(getNumberFramesRun()))
+        currentFrame_ -= static_cast<float>(getNumberFramesRun());
 
-    sprite.setPosition(rect.left, rect.top);
+    if (speedX_ > 0)
+        sprite_.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame_),
+                               244,
+                               40,
+                               50));
+    if (speedX_ < 0)
+        sprite_.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame_) + 40,
+                               244,
+                               -40,
+                               50));
 
-    speedX = 0;
+    sprite_.setPosition(rect_.left, rect_.top);
+
+    speedX_ = 0;
 
 }
 
 void Soldier::jump(float time) noexcept {
-    if(!onGround) speedY += (0.0005f * time);
+    if (!isOnGround_)
+        speedY_ += (getStandardFpsJump() * time);
 
-    set_onGround(false);
+    isOnGround_ = false;
 
-    if (rect.top += speedY * time, rect.top > ground) {
-        rect.top = ground;
-        set_speedY(0);
-        set_onGround(true);
+    if (rect_.top += speedY_ * time, rect_.top > getPositionGround()) {
+        rect_.top = getPositionGround();
+        speedY_ = 0;
+        isOnGround_ = true;
     }
 }
 
 void Soldier::stand(float time) noexcept {
-    if(speedX == 0 && speedY == 0
-                   && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-                   && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        if (currentFrame += (0.000001f * time), currentFrame > 3) currentFrame -= 3;
-        sprite.setTextureRect(sf::IntRect(44 * static_cast<int>(currentFrame), 190, 40, 50));
+    if(speedX_ == 0 && speedY_ == 0
+                    && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+                    && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        if (currentFrame_ += (getStandardFpsStand() * time), currentFrame_ > static_cast<float>(getNumberFramesStand()))
+            currentFrame_ -= static_cast<float>(getNumberFramesStand());
+        sprite_.setTextureRect(sf::IntRect(44 * static_cast<int>(currentFrame_),
+                               190,
+                               40,
+                               50));
     }
 }
