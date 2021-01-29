@@ -21,15 +21,15 @@ private:
     void move(float speedJump, float speedRun, float time) noexcept;
     void stand(float time) noexcept;
 
+    void set_speedX(float sX);
+    void set_speedY(float sY);
+    void set_onGround(bool value);
+
 public:
     Soldier(sf::RenderWindow* _window, const sf::Texture& _image);
 
     void update(float time);
-    void draw();
-
-    void set_speedX(float sX);
-    void set_speedY(float sY);
-    void set_onGround(bool value);
+    void draw() const noexcept;
 
     [[nodiscard]] auto get_onGround() const noexcept -> bool;
 };

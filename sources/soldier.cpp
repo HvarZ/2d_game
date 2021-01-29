@@ -30,11 +30,11 @@ void Soldier::set_onGround(bool value) {
     onGround = value;
 }
 
-void Soldier::draw() {
+void Soldier::draw() const noexcept {
     window->draw(sprite);
 }
 
-auto Soldier::get_onGround() const noexcept -> bool {
+[[nodiscard]] auto Soldier::get_onGround() const noexcept -> bool {
     return onGround;
 }
 
