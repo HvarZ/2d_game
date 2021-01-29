@@ -17,6 +17,9 @@ private:
     int health;
     int score;
 
+    void jump(float time) noexcept;
+    void move(float speedJump, float speedRun) noexcept;
+
 public:
     Soldier(sf::RenderWindow* _window, const sf::Texture& _image);
 
@@ -28,7 +31,6 @@ public:
     void set_onGround(bool value);
 
     [[nodiscard]] auto get_onGround() const noexcept -> bool;
-
 };
 
 #endif //INC_2D_GAME_SOLDIER_HPP
