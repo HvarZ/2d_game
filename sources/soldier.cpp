@@ -66,7 +66,10 @@ void Soldier::stand(float time) noexcept {
     if(speedX_ == 0 && speedY_ == 0
                     && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
                     && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        if (currentFrame_ += (soldierSettings::getStandardFpsStand() * time), currentFrame_ > static_cast<float>(soldierSettings::getNumberFramesStand()))
+
+        if (currentFrame_ += (soldierSettings::getStandardFpsStand() * time),
+            currentFrame_ > static_cast<float>(soldierSettings::getNumberFramesStand()))
+
             currentFrame_ -= static_cast<float>(soldierSettings::getNumberFramesStand());
         sprite_.setTextureRect(soldierSettings::getRectAnimationStand(currentFrame_));
     }

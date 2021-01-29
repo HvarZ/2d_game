@@ -2,6 +2,6 @@
 
 Level_1::Level_1(const std::vector<std::string>& map) noexcept : map_(map) {}
 
-void Level_1::printMap() const noexcept {
+void Level_1::drawMap() const noexcept {
     // in progress
 }
