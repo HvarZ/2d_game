@@ -1,45 +1,71 @@
 #ifndef INC_2D_GAME_SETTINGSSOLDIER_HPP
 #define INC_2D_GAME_SETTINGSSOLDIER_HPP
 
-auto getCoefficientScale() -> float {
-    return 2;
-}
+#include <SFML/Graphics.hpp>
 
-auto getPositionGround() -> float {
-    return 800;
-}
+namespace soldierSettings {
+    auto getRectStartPosition() -> sf::FloatRect {
+        return sf::FloatRect(0, 0, 40, 50);
+    }
 
-auto getStandardSpeedJump() -> float {
-    return -0.4f;
-}
+    auto getStartPosition() -> sf::IntRect {
+        return sf::IntRect(0, 244, 40, 40);
+    }
 
-auto getStandardSpeedRun() -> float {
-    return 0.1f;
-}
+    auto getRectAnimationRunLeft(float currentFrame_) -> sf::IntRect {
+        return sf::IntRect(40 * static_cast<int>(currentFrame_) + 40, 244,
+                           -40, 50);
+    }
 
-auto getStandardHealthSoldier() -> int {
-    return 200;
-}
+    auto getRectAnimationRunRight(float currentFrame_) -> sf::IntRect {
+        return sf::IntRect(40 * static_cast<int>(currentFrame_), 244,
+                           40, 50);
+    }
 
-auto getStandardFpsRun() -> float {
-    return 0.005f;
-}
+    auto getRectAnimationStand(float currentFrame_) -> sf::IntRect {
+        return sf::IntRect(44 * static_cast<int>(currentFrame_), 190,
+                           40, 50);
+    }
 
-auto getStandardFpsJump() -> float {
-    return 0.0005f;
-}
+    auto getCoefficientScale() -> float {
+        return 2.0f;
+    }
 
-auto getStandardFpsStand() -> float {
-    return 0.000001f;
-}
+    auto getPositionGround() -> float {
+        return 800.0f;
+    }
 
-auto getNumberFramesRun() -> int {
-    return 6;
-}
+    auto getStandardSpeedJump() -> float {
+        return -0.4f;
+    }
 
-auto getNumberFramesStand() -> int {
-    return 3;
-}
+    auto getStandardSpeedRun() -> float {
+        return 0.1f;
+    }
 
+    auto getStandardHealthSoldier() -> int {
+        return 200;
+    }
+
+    auto getStandardFpsRun() -> float {
+        return 0.005f;
+    }
+
+    auto getStandardFpsJump() -> float {
+        return 0.0005f;
+    }
+
+    auto getStandardFpsStand() -> float {
+        return 0.000001f;
+    }
+
+    auto getNumberFramesRun() -> int {
+        return 6;
+    }
+
+    auto getNumberFramesStand() -> int {
+        return 3;
+    }
+}
 
 #endif //INC_2D_GAME_SETTINGSSOLDIER_HPP
