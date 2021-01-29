@@ -13,20 +13,10 @@ Soldier::Soldier(sf::RenderWindow* _window, const sf::Texture& image) :
 }
 
 void Soldier::update(float time) {
+    move(-0.4f, 0.1f);
+    jump(time);
+
     rect.left += speedX * time;
-
-    if(!onGround)
-        speedY += 0.0005f * time;
-
-    rect.top += speedY * time;
-
-    onGround = false;
-
-    if (rect.top > ground) {
-        rect.top = ground;
-        speedY = 0;
-        onGround = true;
-    }
 
     if (currentFrame += (0.005f * time), currentFrame > 6) currentFrame -= 6;
 
@@ -56,4 +46,34 @@ void Soldier::draw() {
 
 auto Soldier::get_onGround() const noexcept -> bool {
     return onGround;
+}
+
+void Soldier::move(const float speedJump, const float speedRun) noexcept {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+        set_speedX(-speedRun);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        set_speedX(speedRun);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+        if (get_onGround()) {
+            set_speedY(speedJump);
+            set_onGround(false);
+        }
+    }
+
+}
+
+void Soldier::jump(float time) noexcept {
+    if(!onGround) speedY += (0.0005f * time);
+
+    set_onGround(false);
+
+    if (rect.top += speedY * time, rect.top > ground) {
+        rect.top = ground;
+        set_speedY(0);
+        set_onGround(true);
+    }
 }
