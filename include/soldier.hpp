@@ -14,11 +14,12 @@ private:
     float currentFrame;
     bool onGround;
 
-    int health;
-    int score;
+    [[maybe_unused]] int health;
+    [[maybe_unused]] int score;
 
     void jump(float time) noexcept;
     void move(float speedJump, float speedRun, float time) noexcept;
+    void stand(float time) noexcept;
 
 public:
     Soldier(sf::RenderWindow* _window, const sf::Texture& _image);

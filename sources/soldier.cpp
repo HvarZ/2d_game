@@ -13,6 +13,7 @@ Soldier::Soldier(sf::RenderWindow* _window, const sf::Texture& image) :
 }
 
 void Soldier::update(float time) {              // every tick
+    stand(time);
     move(-0.4f, 0.1f, time);
     jump(time);
 }
@@ -75,5 +76,14 @@ void Soldier::jump(float time) noexcept {
         rect.top = ground;
         set_speedY(0);
         set_onGround(true);
+    }
+}
+
+void Soldier::stand(float time) noexcept {
+    if(speedX == 0 && speedY == 0
+                   && !sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+                   && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+        if (currentFrame += (0.000001f * time), currentFrame > 3) currentFrame -= 3;
+        sprite.setTextureRect(sf::IntRect(44 * static_cast<int>(currentFrame), 190, 40, 50));
     }
 }

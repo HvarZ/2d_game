@@ -15,7 +15,7 @@ int main() {
     while (window.isOpen()) {
         sf::Event event{};
 
-        auto time = clock.getElapsedTime().asMicroseconds() / 200;
+        auto time = clock.getElapsedTime().asMicroseconds() / 300;
         clock.restart();
 
         while (window.pollEvent(event)) {
