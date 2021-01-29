@@ -18,7 +18,7 @@ private:
     int score;
 
     void jump(float time) noexcept;
-    void move(float speedJump, float speedRun) noexcept;
+    void move(float speedJump, float speedRun, float time) noexcept;
 
 public:
     Soldier(sf::RenderWindow* _window, const sf::Texture& _image);

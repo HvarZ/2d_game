@@ -11,12 +11,12 @@ private:
     sf::Texture texture;
     sf::Sprite sprite;
 
-    float start_position;
-    float current_frame;
+    float startPosition;
+    float currentFrame;
 
     int health;
 
-    bool on_ground;
+    bool onGround;
 
 public:
     virtual void move();

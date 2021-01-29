@@ -12,20 +12,9 @@ Soldier::Soldier(sf::RenderWindow* _window, const sf::Texture& image) :
     sprite.setScale(2, 2);
 }
 
-void Soldier::update(float time) {
-    move(-0.4f, 0.1f);
+void Soldier::update(float time) {              // every tick
+    move(-0.4f, 0.1f, time);
     jump(time);
-
-    rect.left += speedX * time;
-
-    if (currentFrame += (0.005f * time), currentFrame > 6) currentFrame -= 6;
-
-    if (speedX > 0) sprite.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame), 244, 40, 50));
-    if (speedX < 0) sprite.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame) + 40, 244, -40, 50));
-
-    sprite.setPosition(rect.left, rect.top);
-
-    speedX = 0;
 }
 
 void Soldier::set_speedX(float sX) {
@@ -48,7 +37,7 @@ auto Soldier::get_onGround() const noexcept -> bool {
     return onGround;
 }
 
-void Soldier::move(const float speedJump, const float speedRun) noexcept {
+void Soldier::move(const float speedJump, const float speedRun, const float time) noexcept {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         set_speedX(-speedRun);
     }
@@ -63,6 +52,17 @@ void Soldier::move(const float speedJump, const float speedRun) noexcept {
             set_onGround(false);
         }
     }
+
+    rect.left += speedX * time;
+
+    if (currentFrame += (0.005f * time), currentFrame > 6) currentFrame -= 6;
+
+    if (speedX > 0) sprite.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame), 244, 40, 50));
+    if (speedX < 0) sprite.setTextureRect(sf::IntRect(40 * static_cast<int>(currentFrame) + 40, 244, -40, 50));
+
+    sprite.setPosition(rect.left, rect.top);
+
+    speedX = 0;
 
 }
 
