@@ -1,10 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <soldier.hpp>
 
-int main () {
+int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "2d_Game");
+
     sf::Texture texture;
     texture.loadFromFile("../content/fang.png");
+
     Soldier soldier(&window, texture);
 
     sf::Clock clock;
@@ -20,22 +22,6 @@ int main () {
             if ((event.type == sf::Event::Closed)
                 || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
                 window.close();
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            soldier.set_speedX(-0.1);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            soldier.set_speedX(0.1);
-
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            if (soldier.get_onGround()) {
-                soldier.set_speedY(-0.4f);
-                soldier.set_onGround(false);
-            }
         }
 
         soldier.update(time);
