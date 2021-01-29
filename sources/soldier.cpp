@@ -36,7 +36,9 @@ void Soldier::move(const float speedJump, const float speedRun, const float time
 
     rect_.left += speedX_ * time;
 
-    if (currentFrame_ += (soldierSettings::getStandardFpsRun() * time), currentFrame_ > static_cast<float>(soldierSettings::getNumberFramesRun()))
+    if (currentFrame_ += (soldierSettings::getStandardFpsRun() * time),
+        currentFrame_ > static_cast<float>(soldierSettings::getNumberFramesRun()))
+
         currentFrame_ -= static_cast<float>(soldierSettings::getNumberFramesRun());
 
     if (speedX_ > 0)
