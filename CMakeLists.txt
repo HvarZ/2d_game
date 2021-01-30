@@ -5,14 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
         sources/main.cpp
-        sources/soldier.cpp
+        sources/soldier/soldier.cpp
         sources/level_1.cpp
         )
 
 set(HEADERS
         include/boss.hpp
-        include/soldier.hpp
-        include/settingsSoldier.hpp
+        include/soldier/soldier.hpp
+        include/soldier/settingsSoldier.hpp
         include/level_1.hpp
         )
 

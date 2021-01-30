@@ -5,7 +5,7 @@
 
 namespace soldierSettings {
     auto getRectStartPosition() -> sf::FloatRect {
-        return sf::FloatRect(0, 0, 40, 50);
+        return sf::FloatRect(150, 150, 40, 50);
     }
 
     auto getStartPosition() -> sf::IntRect {

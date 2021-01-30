@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#include <soldier.hpp>
+#include <soldier/soldier.hpp>
+#include <level_1.hpp>
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "2d_Game");
@@ -9,6 +10,7 @@ int main() {
     texture.loadFromFile("../content/fang.png");
 
     Soldier soldier(&window, texture);
+    Level_1 level1(&window);
 
     sf::Clock clock;
 
@@ -28,6 +30,7 @@ int main() {
         soldier.update(time);
 
         window.clear();
+        level1.draw();
         soldier.draw();
         window.display();
     }

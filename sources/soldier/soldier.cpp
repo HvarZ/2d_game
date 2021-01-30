@@ -1,5 +1,5 @@
-#include <soldier.hpp>
-#include <settingsSoldier.hpp>
+#include <soldier/soldier.hpp>
+#include <soldier/settingsSoldier.hpp>
 
 Soldier::Soldier(sf::RenderWindow* window, const sf::Texture& image) :
         window_(window), rect_(soldierSettings::getRectStartPosition()),
