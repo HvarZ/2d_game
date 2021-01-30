@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <soldier/soldier.hpp>
-#include <level_1.hpp>
+#include <level_1/level_1.hpp>
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "2d_Game");
