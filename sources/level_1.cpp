@@ -15,6 +15,8 @@ void Level_1::draw() noexcept {
                 rectangleShape.setFillColor(sf::Color::Cyan);
             else if (map_[i][j] == '2')
                 rectangleShape.setFillColor(sf::Color::Green);
+            else if (map_[i][j] == ' ')
+                continue;
 
             rectangleShape.setPosition(static_cast<float>(j) * 64, static_cast<float>(i) * 64);
             window_->draw(rectangleShape);
