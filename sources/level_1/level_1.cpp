@@ -1,5 +1,10 @@
 #include <level_1/level_1.hpp>
 
+#define FILL_COLOR(number, color)           \
+    if (map_[i][j] == (number))             \
+        rectangleShape.setFillColor(color); \
+
+
 void Level_1::draw() noexcept {
     sf::RectangleShape rectangleShape;
     rectangleShape.setSize(sf::Vector2f(64, 64));
@@ -9,13 +14,11 @@ void Level_1::draw() noexcept {
 
     for (size_t i = 0; i < height; i++) {
         for (size_t j = 0; j < weight; j++) {
-            if (map_[i][j] == '0')
-                rectangleShape.setFillColor(sf::Color::White);
-            else if (map_[i][j] == '1')
-                rectangleShape.setFillColor(sf::Color::Cyan);
-            else if (map_[i][j] == '2')
-                rectangleShape.setFillColor(sf::Color::Green);
-            else if (map_[i][j] == ' ')
+            FILL_COLOR('0', sf::Color::White);
+            FILL_COLOR('1', sf::Color::Cyan);
+            FILL_COLOR('2', sf::Color::Green);
+
+            if (map_[i][j] == ' ')
                 continue;
 
             rectangleShape.setPosition(static_cast<float>(j) * 64, static_cast<float>(i) * 64);
