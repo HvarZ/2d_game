@@ -27,7 +27,6 @@ private:
             "0                            0",
             "222222222222222222222222222222",
             "222222222222222222222222222222"
-
     };
 public:
     explicit Level_1(sf::RenderWindow* window) noexcept;
